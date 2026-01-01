@@ -1,44 +1,116 @@
-<!-- index.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>EXTREMELY DEAD NAZIS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="reset.css" />
-  <link rel="stylesheet" href="styles/main.css" />
-</head>
-<body>
-  <main id="app">
-
-    <!-- SPLASH / TITLE SCREEN -->
-    <section id="splash" class="splash" aria-label="Title screen">
-      <div>
-        <h1>EXTREMELY DEAD NAZIS</h1>
-        <div class="subtitle">A VERY VIOLENT CHRISTMAS</div>
-      </div>
-
-      <img
-        src="assets/cover-image.png"
-        alt="EXTREMELY DEAD NAZIS TITLE ART"
-      />
-
-      <div class="promptRow" role="listbox" aria-label="Start prompt">
-        <div class="choice" id="enterPrompt" role="option" tabindex="0" aria-selected="true">
-          <span class="marker">&gt;</span>
-          <span>ENTER</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extremely Dead Nazis: A Very Violent Holiday</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="dot"></div>
+          <div>
+            <div class="title">EXTREMELY DEAD NAZIS</div>
+            <div class="subtitle">A VERY VIOLENT HOLIDAY</div>
+          </div>
         </div>
-      </div>
 
-      <div class="promptHint">PRESS ENTER OR CLICK TO BEGIN</div>
-    </section>
+        <div class="hud" aria-live="polite">
+          <div class="hudItem">
+            <div class="hudLabel">TIME</div>
+            <div id="hudTime" class="hudValue">—</div>
+          </div>
+          <div class="hudItem">
+            <div class="hudLabel">KILLS</div>
+            <div id="hudKills" class="hudValue">—</div>
+          </div>
+          <div class="hudItem">
+            <div class="hudLabel">GOAL</div>
+            <div id="hudGoal" class="hudValue">—</div>
+          </div>
+        </div>
+      </header>
 
-  </main>
+      <main class="stageWrap">
+        <!-- SPLASH -->
+        <section id="screenMenu" class="screen screenActive">
+          <div class="homeScreen">
+            <div class="heroImageWrap">
+              <img
+                class="heroImage"
+                src="/assets/splash.png"
+                alt="Extremely Dead Nazis: A Very Violent Holiday"
+              />
+              <div class="heroGlow"></div>
+            </div>
 
-  <footer class="footer">
-    <p>&copy; 2025 | Made with &#9829; for Jake!</p>
-  </footer>
+            <div class="homeControls" aria-label="Start menu">
+              <div class="difficultyRow" role="radiogroup" aria-label="Difficulty">
+                <button class="diffBtn isActive" data-diff="easy" role="radio" aria-checked="true">
+                  EASY
+                </button>
+                <button class="diffBtn" data-diff="medium" role="radio" aria-checked="false">
+                  MEDIUM
+                </button>
+                <button class="diffBtn" data-diff="hard" role="radio" aria-checked="false">
+                  HARD
+                </button>
+              </div>
 
-  <script type="module" src="src/main.js"></script>
-</body>
+              <button id="btnStartSplash" class="startBtn" aria-label="Start game">
+                START
+              </button>
+
+              <div class="splashHint">
+                <span>← →</span><span>ENTER</span><span>CLICK</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PLAY -->
+        <section id="screenPlay" class="screen">
+          <div id="arena" class="arena" role="application" aria-label="Game arena">
+            <button id="target" class="target" aria-label="Target">
+              <img id="targetImg" alt="Target" />
+            </button>
+
+            <div id="message" class="message" aria-live="polite"></div>
+          </div>
+
+          <div class="playControls">
+            <button id="btnPause" class="btn ghost">Pause</button>
+            <button id="btnRestart" class="btn ghost">Restart</button>
+            <button id="btnQuit" class="btn ghost">Quit</button>
+          </div>
+        </section>
+
+        <!-- END -->
+        <section id="screenEnd" class="screen">
+          <div class="card endCard">
+            <img id="endImg" class="endImg" alt="End screen image" />
+            <h2 id="endTitle">—</h2>
+            <p id="endText" class="muted">—</p>
+            <div class="row">
+              <button id="btnPlayAgain" class="btn">Play again</button>
+              <button id="btnBackToMenu" class="btn ghost">Back to splash</button>
+            </div>
+          </div>
+
+          <div id="jumpScareFlash" class="jumpScareFlash" aria-hidden="true"></div>
+        </section>
+      </main>
+
+      <!-- Audio (optional files; safe if missing, just won’t play) -->
+      <audio id="uiMove" preload="auto" src="/audio/ui-move.mp3"></audio>
+      <audio id="uiSelect" preload="auto" src="/audio/ui-select.mp3"></audio>
+
+      <audio id="sfxHit" preload="auto" src="/audio/hit.mp3"></audio>
+      <audio id="musicWin" preload="auto" src="/audio/win.mp3"></audio>
+      <audio id="musicLose" preload="auto" src="/audio/lose.mp3"></audio>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
